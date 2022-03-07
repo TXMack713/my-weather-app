@@ -3,42 +3,66 @@ Select the weather section tag and create the DOM elements needed to display the
 */
 const submit = document.getElementById('submit');
 submit.addEventListener('click', getWeather);
-submit.addEventListener('click', function () {
-  alert('You hit the submit button');
-});
-submit.addEventListener('click', function () {
-  const value = document.getElementById('location').value;
-  alert(value + ' is a typeof' + typeof value);
-});
+// submit.addEventListener('click', function () {
+//   alert('You hit the submit button');
+// });
+// submit.addEventListener('click', function () {
+//   const value = document.getElementById('location').value;
+//   alert(value + ' is a typeof ' + typeof value);
+// });
 
 async function getLocation() {
   const entry = document.getElementById('location').value;
   let x = Number.parseInt(entry);
 
-  if (typeof x == Number) {
+  if (typeof x === Number) {
     const response = await fetch(
       `http://api.openweathermap.org/geo/1.0/zip?zip=${entry}&appid=f51a778f79966048f8772e1c2dfb9667`
     );
-    const locationData = await response.json();
+    if (response.status >= 200 && response.status <= 299) {
+      const locationData = await response.json();
+      console.log(jsonResponse);
+    } else {
+      // Handle errors
+      console.log(response.status, response.statusText);
+    }
     const city = locationData.name;
     const country = locationData.country;
-  } else if (x == NaN) {
+  } else if (x === NaN) {
     let place = entry.split(',');
     if (place.length == 1) {
       const response = await fetch(
         `http://api.openweathermap.org/geo/1.0/direct?q=${place[0]}&appid=f51a778f79966048f8772e1c2dfb9667`
       );
-      const locationData = await response.json();
+      if (response.status >= 200 && response.status <= 299) {
+        const locationData = await response.json();
+        console.log(jsonResponse);
+      } else {
+        // Handle errors
+        console.log(response.status, response.statusText);
+      }
     } else if (place.length == 2) {
       const response = await fetch(
         `http://api.openweathermap.org/geo/1.0/direct?q=${place[0]},${place[1]}&appid=f51a778f79966048f8772e1c2dfb9667`
       );
-      const locationData = await response.json();
+      if (response.status >= 200 && response.status <= 299) {
+        const locationData = await response.json();
+        console.log(jsonResponse);
+      } else {
+        // Handle errors
+        console.log(response.status, response.statusText);
+      }
     } else if (place.length == 3) {
       const response = await fetch(
         `http://api.openweathermap.org/geo/1.0/direct?q=${place[0]},${place[1]},${place[2]}&appid=f51a778f79966048f8772e1c2dfb9667`
       );
-      const locationData = await response.json();
+      if (response.status >= 200 && response.status <= 299) {
+        const locationData = await response.json();
+        console.log(jsonResponse);
+      } else {
+        // Handle errors
+        console.log(response.status, response.statusText);
+      }
     }
     // const locationData = await response.json();
     // const city = locationData[0].name;
@@ -54,7 +78,13 @@ async function getWeather(data) {
   const response = await fetch(
     `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=f51a778f79966048f8772e1c2dfb9667`
   );
-  const weatherData = await response.json();
+  if (response.status >= 200 && response.status <= 299) {
+    const weatherData = await response.json();
+    console.log(jsonResponse);
+  } else {
+    // Handle errors
+    console.log(response.status, response.statusText);
+  }
   console.log(weatherData);
 
   populateWeather(weatherData);
