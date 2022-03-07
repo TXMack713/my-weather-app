@@ -86,6 +86,9 @@ async function getLocation() {
 }
 
 async function getWeather(data) {
+  console.log("Here's the data being passed to the getWeather method");
+  console.log(data);
+
   const lat = data['lat'];
   const lon = data['lon'];
   const weatherURL =
