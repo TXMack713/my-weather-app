@@ -48,8 +48,8 @@ async function getLocation() {
 }
 
 async function getWeather(data) {
-  const lat = data.lat;
-  const lon = data.lon;
+  const lat = data['lat'];
+  const lon = data['lon'];
 
   const response = await fetch(
     `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=f51a778f79966048f8772e1c2dfb9667`
