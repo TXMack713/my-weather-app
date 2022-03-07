@@ -2,7 +2,7 @@
 Select the weather section tag and create the DOM elements needed to display the current weather
 */
 const submit = document.getElementById('submit');
-submit.addEventListener('click', getLocation);
+submit.addEventListener('click', getWeather);
 
 async function getLocation() {
   const entry = document.getElementById('location').textContent;
