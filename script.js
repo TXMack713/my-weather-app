@@ -8,33 +8,34 @@ submit.addEventListener('click', function () {
 });
 
 async function getLocation() {
-  const entry = document.getEl;
-  ementById('location').value;
+  const entry = document.getElementById('location').value;
   // const entry = input.value();
 
   // Check the entry data type
+  let locationData = '';
   if (entry instanceof Number) {
     const response = await fetch(
       `http://api.openweathermap.org/geo/1.0/zip?zip=${entry}&appid=f51a778f79966048f8772e1c2dfb9667`
     );
-    const locationData = await response.json();
+    locationData = await response.json();
     const city = locationData.name;
     const country = locationData.country;
   } else if (entry instanceof String) {
     const response = await fetch(
       `http://api.openweathermap.org/geo/1.0/direct?q=${entry}&appid=f51a778f79966048f8772e1c2dfb9667`
     );
-    const locationData = await response.json();
-    const city = locationData[0].name;
-    const country = locationData[0].country;
+    locationData = await response.json();
+    // const city = locationData[0].name;
+    // const country = locationData[0].country;
   }
   return locationData;
 }
 
+const lat = locationData.lat;
+const lon = locationData.lon;
+
 async function getWeather() {
   getLocation();
-  const lat = locationData.lat;
-  const lon = locationData.lon;
 
   const response = await fetch(
     `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=f51a778f79966048f8772e1c2dfb9667`
@@ -61,7 +62,7 @@ function populateWeather(data) {
   const weatherSection = document.getElementsByClassName('weather');
 
   const locale = document.createElement('h2');
-  locale.textContent = city + ', ' + country;
+  // locale.textContent = city + ', ' + country;
 
   const current = document.createElement('p');
   current.textContent = 'Current temp: ' + temp;
@@ -81,7 +82,7 @@ function populateWeather(data) {
   const advisoryDescription = document.createElement('p');
   advisoryDescription.textContent = weatherAlert;
 
-  weatherSection.appendChild(locale);
+  // weatherSection.appendChild(locale);
   weatherSection.appendChild(current);
   weatherSection.appendChild(condition);
   weatherSection.appendChild(range);
