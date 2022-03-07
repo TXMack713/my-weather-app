@@ -81,16 +81,12 @@ async function getWeather(data) {
   if (response.status >= 200 && response.status <= 299) {
     const weatherData = await response.json();
     console.log(weatherData);
+    populateWeather(weatherData);
   } else {
     // Handle errors
     console.log(response.status, response.statusText);
   }
   // console.log(weatherData);
-  try {
-    populateWeather(weatherData);
-  } catch (error) {
-    console.error(error);
-  }
 }
 
 function populateWeather(data) {
