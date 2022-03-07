@@ -12,15 +12,19 @@ async function getLocation() {
     const response = await fetch(
       'http://api.openweathermap.org/geo/1.0/zip?zip=entry&appid=f51a778f79966048f8772e1c2dfb9667'
     );
-    const weatherData = await response.json();
+    const locationData = await response.json();
   } else if (entry instanceof String) {
     const response = await fetch(
       'http://api.openweathermap.org/geo/1.0/direct?q=entry&appid=f51a778f79966048f8772e1c2dfb9667'
     );
-    const weatherData = await response.json();
+    const locationData = await response.json();
   }
+}
 
-  
+async function getWeather() {
+  getLocation();
+  const lat = locationData.lat;
+  const lon = locationData.lon;
 }
 
 const weatherSection = document.getElementsByClassName('weather');

@@ -42,7 +42,7 @@ main {
 }
 .area {
   display: flex;
-  max-inline-size: 50%;
+  min-inline-size: 70%;
   gap: 10px;
   align-self: center;
 }
