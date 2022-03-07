@@ -17,7 +17,7 @@ async function getLocation() {
 
   if (typeof x === Number) {
     const response = await fetch(
-      `http://api.openweathermap.org/geo/1.0/zip?zip=${entry}&appid=f51a778f79966048f8772e1c2dfb9667`
+      `http://api.openweathermap.org/geo/1.0/zip?zip=${x}&appid=f51a778f79966048f8772e1c2dfb9667`
     );
     if (response.status >= 200 && response.status <= 299) {
       const locationData = await response.json();
