@@ -21,7 +21,7 @@ async function getLocation() {
     );
     if (response.status >= 200 && response.status <= 299) {
       const locationData = await response.json();
-      console.log(jsonResponse);
+      console.log(locationData);
     } else {
       // Handle errors
       console.log(response.status, response.statusText);
@@ -36,7 +36,7 @@ async function getLocation() {
       );
       if (response.status >= 200 && response.status <= 299) {
         const locationData = await response.json();
-        console.log(jsonResponse);
+        console.log(locationData);
       } else {
         // Handle errors
         console.log(response.status, response.statusText);
@@ -47,7 +47,7 @@ async function getLocation() {
       );
       if (response.status >= 200 && response.status <= 299) {
         const locationData = await response.json();
-        console.log(jsonResponse);
+        console.log(locationData);
       } else {
         // Handle errors
         console.log(response.status, response.statusText);
@@ -58,7 +58,7 @@ async function getLocation() {
       );
       if (response.status >= 200 && response.status <= 299) {
         const locationData = await response.json();
-        console.log(jsonResponse);
+        console.log(locationData);
       } else {
         // Handle errors
         console.log(response.status, response.statusText);
@@ -80,12 +80,12 @@ async function getWeather(data) {
   );
   if (response.status >= 200 && response.status <= 299) {
     const weatherData = await response.json();
-    console.log(jsonResponse);
+    console.log(weatherData);
   } else {
     // Handle errors
     console.log(response.status, response.statusText);
   }
-  console.log(weatherData);
+  // console.log(weatherData);
 
   populateWeather(weatherData);
 }
