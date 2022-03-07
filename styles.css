@@ -1,3 +1,51 @@
+html {
+  min-inline-size: 100%;
+  min-block-size: 100%;
+  padding: 2%;
+}
+
 body {
-  background: orange;
+  min-inline-size: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  hyphens: none;
+  -moz-hyphens: none;
+  -webkit-hyphens: none;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  font-family: 'opensans', sans-serif;
+  background-color: white;
+  font-size: 16px;
+  line-height: 1.5;
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+}
+
+header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+main {
+  padding: 2%;
+  border: 2px solid black;
+  max-inline-size: 35%;
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+  justify-content: center;
+}
+#area {
+  display: flex;
+  max-inline-size: 50%;
+  gap: 10px;
+  align-self: center;
+}
+#location {
+  inline-size: 75%;
 }
