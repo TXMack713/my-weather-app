@@ -40,7 +40,7 @@ main {
   align-content: center;
   justify-content: center;
 }
-#area {
+.area {
   display: flex;
   max-inline-size: 50%;
   gap: 10px;
