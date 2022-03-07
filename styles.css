@@ -49,3 +49,9 @@ main {
 #location {
   inline-size: 75%;
 }
+
+.weather {
+  border: 2px solid black;
+  margin-top: 2rem;
+  min-block-size: 10rem;
+}
