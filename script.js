@@ -86,8 +86,11 @@ async function getWeather(data) {
     console.log(response.status, response.statusText);
   }
   // console.log(weatherData);
-
-  populateWeather(weatherData);
+  try {
+    populateWeather(weatherData);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function populateWeather(data) {
