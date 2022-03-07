@@ -3,9 +3,14 @@ Select the weather section tag and create the DOM elements needed to display the
 */
 const submit = document.getElementById('submit');
 submit.addEventListener('click', getWeather);
+submit.addEventListener('click', function () {
+  alert('You hit the submit button');
+});
 
 async function getLocation() {
-  const entry = document.getElementById('location').textContent;
+  const entry = document.getEl;
+  ementById('location').value;
+  // const entry = input.value();
 
   // Check the entry data type
   if (entry instanceof Number) {
