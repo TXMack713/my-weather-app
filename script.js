@@ -6,47 +6,50 @@ submit.addEventListener('click', getWeather);
 submit.addEventListener('click', function () {
   alert('You hit the submit button');
 });
+submit.addEventListener('click', function () {
+  const value = document.getElementById('location').value;
+  alert(value + ' is a typeof' + typeof value);
+});
 
 async function getLocation() {
   const entry = document.getElementById('location').value;
-  // const entry = input.value();
+  let x = Number.parseInt(entry);
 
-  // Check the entry data type
-  // let locationData = '';
-  if (entry instanceof Number) {
+  if (typeof x == Number) {
     const response = await fetch(
       `http://api.openweathermap.org/geo/1.0/zip?zip=${entry}&appid=f51a778f79966048f8772e1c2dfb9667`
     );
     const locationData = await response.json();
     const city = locationData.name;
     const country = locationData.country;
-  } else if (entry instanceof String) {
+  } else if (x == NaN) {
     let place = entry.split(',');
     if (place.length == 1) {
       const response = await fetch(
         `http://api.openweathermap.org/geo/1.0/direct?q=${place[0]}&appid=f51a778f79966048f8772e1c2dfb9667`
       );
+      const locationData = await response.json();
     } else if (place.length == 2) {
       const response = await fetch(
         `http://api.openweathermap.org/geo/1.0/direct?q=${place[0]},${place[1]}&appid=f51a778f79966048f8772e1c2dfb9667`
       );
+      const locationData = await response.json();
     } else if (place.length == 3) {
       const response = await fetch(
         `http://api.openweathermap.org/geo/1.0/direct?q=${place[0]},${place[1]},${place[2]}&appid=f51a778f79966048f8772e1c2dfb9667`
       );
+      const locationData = await response.json();
     }
-    const locationData = await response.json();
+    // const locationData = await response.json();
     // const city = locationData[0].name;
     // const country = locationData[0].country;
   }
-  return locationData;
+  getWeather(locationData);
 }
 
-const lat = locationData.lat;
-const lon = locationData.lon;
-
-async function getWeather() {
-  getLocation();
+async function getWeather(data) {
+  const lat = data.lat;
+  const lon = data.lon;
 
   const response = await fetch(
     `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=f51a778f79966048f8772e1c2dfb9667`
@@ -59,15 +62,15 @@ async function getWeather() {
 
 function populateWeather(data) {
   //Retrieve the desired weather data to present
-  const temp = data.current.temp;
-  const feelsLike = data.current['feels_like'];
-  const timezone = data.timezone;
-  const description = data.weather.description;
-  const highTemp = data.daily[0].temp.max;
-  const lowTemp = data.daily[0].temp.min;
-  const windSpeed = data.daily['wind_speed'];
-  const weatherAlert = data.alerts[0].description;
-  const weatherEvent = data.alerts[0].event;
+  const temp = data['current']['temp'];
+  const feelsLike = data['current']['feels_like'];
+  const timezone = data['timezone'];
+  const description = data['weather']['description'];
+  const highTemp = data['daily'][0]['temp']['max'];
+  const lowTemp = data['daily'][0]['temp']['min'];
+  const windSpeed = data['daily']['wind_speed'];
+  const weatherAlert = data['alerts'][0]['description'];
+  const weatherEvent = data['alerts'][0]['event'];
 
   // Populate the screen with the current weather information
   const weatherSection = document.getElementsByClassName('weather');
