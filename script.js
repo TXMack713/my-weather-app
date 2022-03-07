@@ -12,19 +12,30 @@ async function getLocation() {
   // const entry = input.value();
 
   // Check the entry data type
-  let locationData = '';
+  // let locationData = '';
   if (entry instanceof Number) {
     const response = await fetch(
       `http://api.openweathermap.org/geo/1.0/zip?zip=${entry}&appid=f51a778f79966048f8772e1c2dfb9667`
     );
-    locationData = await response.json();
+    const locationData = await response.json();
     const city = locationData.name;
     const country = locationData.country;
   } else if (entry instanceof String) {
-    const response = await fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${entry}&appid=f51a778f79966048f8772e1c2dfb9667`
-    );
-    locationData = await response.json();
+    let place = entry.split(',');
+    if (place.length == 1) {
+      const response = await fetch(
+        `http://api.openweathermap.org/geo/1.0/direct?q=${place[0]}&appid=f51a778f79966048f8772e1c2dfb9667`
+      );
+    } else if (place.length == 2) {
+      const response = await fetch(
+        `http://api.openweathermap.org/geo/1.0/direct?q=${place[0]},${place[1]}&appid=f51a778f79966048f8772e1c2dfb9667`
+      );
+    } else if (place.length == 3) {
+      const response = await fetch(
+        `http://api.openweathermap.org/geo/1.0/direct?q=${place[0]},${place[1]},${place[2]}&appid=f51a778f79966048f8772e1c2dfb9667`
+      );
+    }
+    const locationData = await response.json();
     // const city = locationData[0].name;
     // const country = locationData[0].country;
   }
