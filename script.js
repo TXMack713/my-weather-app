@@ -26,6 +26,7 @@ async function getLocation() {
       console.log(locationData);
     } else {
       // Handle errors
+      console.log('The problem is in the zip code api.');
       console.log(response.status, response.statusText);
     }
     const city = locationData.name;
@@ -43,6 +44,7 @@ async function getLocation() {
         console.log(locationData);
       } else {
         // Handle errors
+        console.log('The problem is in the direct api');
         console.log(response.status, response.statusText);
       }
     } else if (place.length == 2) {
@@ -104,6 +106,7 @@ async function getWeather(data) {
     populateWeather(weatherData);
   } else {
     // Handle errors
+    console.log('Error is in the getWeather method');
     console.log(response.status, response.statusText);
   }
   // console.log(weatherData);
