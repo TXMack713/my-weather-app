@@ -24,6 +24,7 @@ async function getLocation() {
     if (response.status >= 200 && response.status <= 299) {
       const locationData = await response.json();
       console.log(locationData);
+      getWeather(locationData);
     } else {
       // Handle errors
       console.log('The problem is in the zip code api.');
@@ -42,6 +43,7 @@ async function getLocation() {
       if (response.status >= 200 && response.status <= 299) {
         const locationData = await response.json();
         console.log(locationData);
+        getWeather(locationData);
       } else {
         // Handle errors
         console.log('The problem is in the direct api');
@@ -58,6 +60,7 @@ async function getLocation() {
       if (response.status >= 200 && response.status <= 299) {
         const locationData = await response.json();
         console.log(locationData);
+        getWeather(locationData);
       } else {
         // Handle errors
         console.log(response.status, response.statusText);
@@ -75,6 +78,7 @@ async function getLocation() {
       if (response.status >= 200 && response.status <= 299) {
         const locationData = await response.json();
         console.log(locationData);
+        getWeather(locationData);
       } else {
         // Handle errors
         console.log(response.status, response.statusText);
@@ -84,7 +88,6 @@ async function getLocation() {
     // const city = locationData[0].name;
     // const country = locationData[0].country;
   }
-  getWeather(locationData);
 }
 
 async function getWeather(data) {
@@ -93,6 +96,8 @@ async function getWeather(data) {
 
   const lat = data['lat'];
   const lon = data['lon'];
+  console.log(lat);
+  console.log(lon);
   const weatherURL =
     'https://api.openweathermap.org/data/2.5/onecall?lat=' +
     lat +
