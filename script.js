@@ -25,6 +25,17 @@ async function getLocation() {
     console.log('Number statement');
     const url = `http://api.openweathermap.org/geo/1.0/zip?zip=${location[0]}&appid=f51a778f79966048f8772e1c2dfb9667`;
     const response = await fetch(url);
+    const data = await response.json();
+
+    // const lat = data['lat'];
+    // const lon = data['lon'];
+    // console.log(lat);
+    // console.log(lon);
+    // const weatherURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=f51a778f79966048f8772e1c2dfb9667`;
+    // const reply = await fetch(weatherURL);
+    // const weatherData = await reply.json();
+    // console.log(weatherData);
+    // populateWeather(weatherData);
 
     if (response.status >= 200 && response.status <= 299) {
       const locationData = await response.json();
