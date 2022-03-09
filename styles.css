@@ -100,7 +100,7 @@ input {
 }
 
 #submit:active {
-  border-color: #006FC8;
+  border-color: #006fc8;
 }
 
 @media screen and (max-width: 24rem) {
@@ -109,5 +109,15 @@ input {
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
+  }
+}
+
+@media screen and (min-width: 75rem) {
+  body {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    max-inline-size: 85vw;
   }
 }
