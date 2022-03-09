@@ -159,19 +159,19 @@ function populateWeather(data) {
   const weatherSection = document.getElementById('weather_display');
 
   const locale = document.createElement('h2');
-  locale.textContent = city + ', ' + country;
+  locale.textContent = city.toUpperCase() + ', ' + country.toUpperCase();
 
   const current = document.createElement('p');
-  current.textContent = 'Current temp: ' + temp + '°F';
+  current.textContent = 'Current Temp: ' + temp + '°F';
 
   const condition = document.createElement('p');
-  condition.textContent = 'Current condition: ' + description;
+  condition.textContent = 'Current Condition: ' + description.toUpperCase();
 
   const range = document.createElement('p');
   range.textContent = 'High: ' + highTemp + '°F       Low: ' + lowTemp + '°F';
 
   const winds = document.createElement('p');
-  winds.textContent = 'Winds currently at ' + windSpeed + ' MPH';
+  winds.textContent = 'Winds Currently At ' + windSpeed + ' MPH';
 
   /*
 
