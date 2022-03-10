@@ -182,12 +182,59 @@ function populateWeather(data) {
   advisoryDescription.textContent = weatherAlert;
 
   */
+  const todayDate = new Date();
+  const thisDay = document.createElement('h4');
+  thisDay.textContent = 'Today: ' + todayDate.toDateString();
+
   weatherSection.textContent = '';
   weatherSection.appendChild(locale);
+  weatherSection.appendChild(thisDay);
   weatherSection.appendChild(current);
   weatherSection.appendChild(condition);
   weatherSection.appendChild(range);
   weatherSection.appendChild(winds);
+  weatherSection.appendChild(document.createElement('hr'));
   // weatherSection.appendChild(currentAdvisory);
   // weatherSection.appendChild(advisoryDescription);
+
+  const extendedSection = document.getElementById('extended');
+
+  for (let i = 0; i < data.daily.length; i++) {
+    const year = todayDate.getFullYear();
+    const month = todayDate.getMonth();
+    let day = todayDate.getDate();
+    const weatherDay = new Date(year, month, day + i);
+
+    const dayInfo = document.createElement('h4');
+    dayInfo.textContent = weatherDay.toDateString();
+
+    const dailyHigh = data.daily[i].temp.max;
+    const dailyLow = data.daily[i].temp.min;
+    const condition = data.daily[i].weather[0].main;
+    const windSpeed = data.daily[i]['wind_speed'];
+
+    const dailyForcast = document.createElement('ul');
+    const high = document.createElement('li');
+    const low = document.createElement('li');
+    const cond = document.createElement('li');
+    const wi_speed = document.createElement('li');
+
+    high.textContent = 'High: ' + Math.round(dailyHigh) + '°F';
+    low.textContent = 'Low: ' + Math.round(dailyLow) + '°F';
+    cond.textContent = 'Expected condition: ' + condition.toUpperCase();
+    wi_speed.textContent =
+      'Expect wind speeds to be ' + Math.round(windSpeed) + ' MPH';
+
+    dailyForcast.appendChild(high);
+    dailyForcast.appendChild(low);
+    dailyForcast.appendChild(cond);
+    dailyForcast.appendChild(wi_speed);
+
+    extendedSection.appendChild(dayInfo);
+    extendedSection.appendChild(dailyForcast);
+
+    if (i != data.daily.length - 1) {
+      extendedSection.appendChild(document.createElement('hr'));
+    }
+  }
 }
