@@ -1,6 +1,7 @@
 /*
 Select the weather section tag and create the DOM elements needed to display the current weather
 */
+const body = document.querySelector('body');
 const submit = document.getElementById('submit');
 submit.addEventListener('click', getLocation);
 // submit.addEventListener('click', function () {
@@ -156,7 +157,7 @@ function populateWeather(data) {
   // const weatherEvent = data['alerts'][0]['event'];
 
   // Populate the screen with the current weather information
-  const weatherSection = document.getElementById('weather_display');
+  const weatherSection = document.createElement('section');
 
   const locale = document.createElement('h2');
   locale.textContent = city.toUpperCase() + ', ' + country.toUpperCase();
@@ -194,10 +195,11 @@ function populateWeather(data) {
   weatherSection.appendChild(range);
   weatherSection.appendChild(winds);
   weatherSection.appendChild(document.createElement('hr'));
+  body.appendChild(weatherSection);
   // weatherSection.appendChild(currentAdvisory);
   // weatherSection.appendChild(advisoryDescription);
 
-  const extendedSection = document.getElementById('extended');
+  const extendedSection = document.createElement('section');
 
   const extendedHeader = document.createElement('h2');
   extendedHeader.textContent = '8-Day Extended Forcast';
@@ -205,6 +207,7 @@ function populateWeather(data) {
   extendedSection.appendChild(document.createElement('hr'));
 
   for (let i = 0; i < data.daily.length; i++) {
+    const dailyContainer = document.createElement('article');
     const year = todayDate.getFullYear();
     const month = todayDate.getMonth();
     let day = todayDate.getDate();
@@ -235,11 +238,14 @@ function populateWeather(data) {
     dailyForcast.appendChild(cond);
     dailyForcast.appendChild(wi_speed);
 
-    extendedSection.appendChild(dayInfo);
-    extendedSection.appendChild(dailyForcast);
+    dailyContainer.appendChild(dayInfo);
+    dailyContainer.appendChild(dailyForcast);
+    extendedSection.appendChild(dailyContainer);
 
     if (i != data.daily.length - 1) {
       extendedSection.appendChild(document.createElement('hr'));
     }
   }
+
+  body.appendChild(extendedSection);
 }

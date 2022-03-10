@@ -20,7 +20,7 @@ body {
   font-family: 'opensans', sans-serif;
   background-color: white;
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.125;
   display: flex;
   flex-flow: column wrap;
   align-content: center;
@@ -50,6 +50,7 @@ header {
 main {
   padding: 2%;
   border: 2px solid #af3415;
+  border-radius: 1rem;
   min-inline-size: 100%;
   display: flex;
   flex-flow: column wrap;
@@ -59,19 +60,38 @@ main {
 }
 .area {
   display: flex;
+  flex-flow: row nowrap;
+  padding-top: 0;
+  padding-bottom: 0;
+  border: none;
   min-inline-size: 50%;
+  margin: 0;
+  min-block-size: 1rem;
   gap: 0.5rem;
   align-self: stretch;
 }
+
 #location {
   min-inline-size: 50%;
 }
 
-#weather_display {
+section {
   border: 2px solid #af3415;
+  border-radius: 1rem;
   margin-top: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   min-block-size: 10rem;
   min-inline-size: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+}
+
+article {
+  border: 2px solid #af3415;
+  border-radius: 1rem;
+  min-inline-size: 80%;
   display: flex;
   flex-flow: column wrap;
   align-content: center;
