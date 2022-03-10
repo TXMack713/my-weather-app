@@ -199,6 +199,11 @@ function populateWeather(data) {
 
   const extendedSection = document.getElementById('extended');
 
+  const extendedHeader = document.createElement('h2');
+  extendedHeader.textContent = '8-Day Extended Forcast';
+  extendedSection.appendChild(extendedHeader);
+  extendedSection.appendChild(document.createElement('hr'));
+
   for (let i = 0; i < data.daily.length; i++) {
     const year = todayDate.getFullYear();
     const month = todayDate.getMonth();
